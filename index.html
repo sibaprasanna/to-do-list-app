@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do List</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="contain">
+    <div class="box">
+      <img src="todo.png" alt="todoimage">
+      <h2>Task Master</h2><h2></h2>
+      <input type="text" name="" id="inputtext" placeholder="add your tasks...">
+      <ul id="list"></ul>
+    </div>
+
+  </div>
+
+  <script>
+    let inputtext = document.querySelector('#inputtext');
+    let list = document.querySelector('#list');
+
+    inputtext.addEventListener("keyup",function(event){
+      if(event.key=="Enter"){
+        addItem(this.value)
+        this.value = ""
+      }
+    })
+
+    let addItem = (inputtext) => {
+      let listItem = document.createElement("li");
+      listItem.innerHTML = `${inputtext}<i></i>`;
+
+        listItem.addEventListener("click",function(){
+          this.classList.toggle('done');
+        })
+
+        listItem.querySelector("i").addEventListener("click",function(){
+          listItem.remove();
+        })
+
+        list.appendChild(listItem);
+    }
+  </script>
+</body>
+</html>
